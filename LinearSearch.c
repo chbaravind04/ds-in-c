@@ -1,22 +1,45 @@
-// Linear Search in C
+// Linked list implementation in C
 
 #include <stdio.h>
+#include <stdlib.h>
 
-int search(int array[], int n, int x) {
-  
-  // Going through array sequencially
-  for (int i = 0; i < n; i++)
-    if (array[i] == x)
-      return i;
-  return -1;
+// Creating a node
+struct node {
+  int value;
+  struct node *next;
+};
+
+// print the linked list value
+void printLinkedlist(struct node *p) {
+  while (p != NULL) {
+    printf("%d ", p->value);
+    p = p->next;
+  }
 }
 
 int main() {
-  int array[] = {2, 4, 0, 1, 9};
-  int x = 1;
-  int n = sizeof(array) / sizeof(array[0]);
+  // Initialize nodes
+  struct node *head;
+  struct node *one = NULL;
+  struct node *two = NULL;
+  struct node *three = NULL;
 
-  int result = search(array, n, x);
+  // Allocate memory
+  one = malloc(sizeof(struct node));
+  two = malloc(sizeof(struct node));
+  three = malloc(sizeof(struct node));
 
-  (result == -1) ? printf("Element not found") : printf("Element found at index: %d", result);
+  // Assign value values
+  one->value = 1;
+  two->value = 2;
+  three->value = 3;
+
+  // Connect nodes
+  one->next = two;
+  two->next = three;
+  three->next = NULL;
+
+  // printing node-value
+  head = one;
+  printLinkedlist(head);
 }
